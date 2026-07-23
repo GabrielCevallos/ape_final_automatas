@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APE 15/16 - Analisis Lexico, Sintactico y Clasificacion Semantica</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #1a1a2e; color: #eee; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #16213e, #0f3460); padding: 20px 30px; border-bottom: 3px solid #e94560; }
+        .header h1 { color: #e94560; font-size: 1.5em; }
+        .header p { color: #aaa; margin-top: 5px; font-size: 0.85em; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 20px; }
+        .card { background: #16213e; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 4px solid #e94560; }
+        .card h2 { color: #e94560; margin-bottom: 15px; font-size: 1.15em; }
+        .card h3 { color: #0f9b8e; margin: 12px 0 8px 0; font-size: 1em; border-bottom: 1px solid #333; padding-bottom: 4px; }
+        textarea { width: 100%; padding: 12px; border: 1px solid #333; border-radius: 6px; background: #0f3460; color: #eee; font-size: 14px; resize: vertical; min-height: 100px; font-family: inherit; }
+        textarea:focus { outline: none; border-color: #e94560; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: bold; transition: all 0.3s; margin: 4px; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn-primary:hover { background: #c73652; }
+        .btn-load { background: #533483; color: white; }
+        .btn-load:hover { background: #6a42a0; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #0f3460; color: #e94560; font-weight: bold; }
+        tr:hover { background: #1a1a40; }
+        .tag { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+        .tag-pos { background: #e94560; color: white; }
+        .tag-dep { background: #0f9b8e; color: white; }
+        .tag-lem { background: #533483; color: white; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 10px; }
+        .info-item { background: #0f3460; padding: 10px; border-radius: 6px; text-align: center; }
+        .info-item .label { color: #aaa; font-size: 11px; }
+        .info-item .value { color: #e94560; font-size: 1.15em; font-weight: bold; margin-top: 4px; }
+        .arbol-container { background: white; border-radius: 8px; padding: 15px; margin-top: 10px; overflow-x: auto; }
+        .arbol-container svg text { font-size: 13px; }
+        .conector-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; margin: 3px; font-size: 12px; }
+        .badge-coord { background: #e94560; color: white; }
+        .badge-subord { background: #533483; color: white; }
+        .loading { display: none; text-align: center; padding: 20px; }
+        .loading.show { display: block; }
+        .spinner { border: 4px solid #333; border-top: 4px solid #e94560; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .tabs { display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; }
+        .tab { padding: 8px 16px; border-radius: 6px 6px 0 0; cursor: pointer; font-size: 13px; font-weight: bold; background: #0f3460; color: #aaa; border: none; }
+        .tab.active { background: #e94560; color: white; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .cmp-table th { background: #533483; }
+        .cmp-table td:nth-child(2), .cmp-table td:nth-child(3) { text-align: center; }
+        .section-title { color: #0f9b8e; font-size: 1em; margin: 15px 0 8px 0; border-bottom: 1px solid #333; padding-bottom: 4px; }
+        .prop-box { background: #0f3460; border-radius: 6px; padding: 10px; margin: 5px 0; display: inline-block; }
+        .prop-box .prop-num { color: #e94560; font-weight: bold; }
+        .prop-box .prop-verb { color: #0f9b8e; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>APE 15/16 - Analisis Lexico, Sintactico y Clasificacion Semantica</h1>
+        <p>spaCy + Stanza (Stanford NLP) | Teoria de Autometas y Computabilidad Avanzada</p>
+        <p style="color: #666; font-size: 0.8em;">Docente: Jose O. Guaman Q. | 6to Ciclo - Unidad Tres</p>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2>Enviar Oraciones desde Front-End</h2>
+            <p style="color:#aaa; margin-bottom:10px; font-size:0.9em;">Ingrese oraciones separadas por salto de linea:</p>
+            <textarea id="oraciones-input" placeholder="María estudia todos los días.&#10;Pedro compró un automóvil.&#10;María estudia porque mañana tiene un examen."></textarea>
+            <div style="margin-top: 10px;">
+                <button class="btn btn-load" onclick="cargarEjemplos()">Cargar Ejemplos Practica 15</button>
+                <button class="btn btn-load" onclick="cargarEjemplos16()">Cargar Ejemplos Practica 16</button>
+                <button class="btn btn-primary" onclick="analizarOraciones()">Analizar con Ambas Herramientas</button>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top:10px; color:#aaa;">Analizando con spaCy y Stanza...</p>
+        </div>
+
+        <div id="resultados-container"></div>
+    </div>
+
+    <script>
+        function cargarEjemplos() {
+            document.getElementById('oraciones-input').value = [
+                "María estudia todos los días.",
+                "Pedro compró un automóvil.",
+                "Ana cocina la cena.",
+                "Luis juega fútbol.",
+                "María estudia porque mañana tiene un examen.",
+                "Pedro llegó y Ana salió.",
+                "Juan cocina mientras Ana limpia."
+            ].join('\n');
+        }
+
+        function cargarEjemplos16() {
+            document.getElementById('oraciones-input').value = [
+                "María estudia porque mañana tiene un examen.",
+                "Pedro llegó y Ana salió.",
+                "Aunque llueve iremos al parque.",
+                "Si estudias aprobarás.",
+                "Juan cocina mientras Ana limpia.",
+                "Pedro compró un automóvil.",
+                "Ana cocina la cena.",
+                "Luis juega fútbol."
+            ].join('\n');
+        }
+
+        async function analizarOraciones() {
+            const input = document.getElementById('oraciones-input').value.trim();
+            if (!input) { alert('Ingrese al menos una oracion.'); return; }
+            const oraciones = input.split('\n').filter(o => o.trim());
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('resultados-container').innerHTML = '';
+            try {
+                const resp = await fetch('/analizar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ oraciones })
+                });
+                const data = await resp.json();
+                document.getElementById('loading').classList.remove('show');
+                if (data.resultados) mostrarResultados(data.resultados);
+            } catch (err) {
+                document.getElementById('loading').classList.remove('show');
+                alert('Error: ' + err.message);
+            }
+        }
+
+        function makeTable(tokens) {
+            return `<table>
+                <thead><tr><th>Token</th><th>Lema</th><th>POS</th><th>Dependencia</th><th>Cabeza</th></tr></thead>
+                <tbody>${tokens.map(t => `<tr>
+                    <td><strong>${t.text}</strong></td>
+                    <td><span class="tag tag-lem">${t.lemma}</span></td>
+                    <td><span class="tag tag-pos">${t.pos}</span></td>
+                    <td><span class="tag tag-dep">${t.dep}</span></td>
+                    <td>${t.head}</td>
+                </tr>`).join('')}</tbody></table>`;
+        }
+
+        function makeCompTable(r) {
+            const sp = r.spacy;
+            const st = r.stanza;
+            const cmp = r.comparacion;
+            return `<table class="cmp-table">
+                <thead><tr><th>Aspecto</th><th>spaCy</th><th>Stanza (Stanford NLP)</th></tr></thead>
+                <tbody>
+                    <tr><td>Tiempo de ejecucion</td><td>${sp.tiempo} ms</td><td>${st.tiempo} ms</td></tr>
+                    <tr><td>Precision POS</td><td colspan="2" style="text-align:center">${cmp.precision_pos}% coincidencia entre herramientas</td></tr>
+                    <tr><td>Arbol sintactico</td><td>Arbol de dependencias (displaCy)</td><td>Arbol de dependencias + Constituyente</td></tr>
+                    <tr><td>Dependencias</td><td colspan="2" style="text-align:center">${cmp.precision_dep}% coincidencia de etiquetas</td></tr>
+                    <tr><td>Facilidad de uso</td><td>Muy facil (1 linea de codigo)</td><td>Facil (requiere mas configuracion)</td></tr>
+                    <tr><td>Consumo de memoria</td><td>${sp.memoria} MB</td><td>${st.memoria} MB</td></tr>
+                </tbody></table>`;
+        }
+
+        function mostrarResultados(resultados) {
+            const container = document.getElementById('resultados-container');
+            container.innerHTML = '';
+
+            resultados.forEach((r, idx) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                const propsHtml = r.tipo_oracion !== 'Simple' && r.stanza.proposiciones ?
+                    r.stanza.proposiciones.map((p, i) =>
+                        `<div class="prop-box"><span class="prop-num">Prop ${i+1}:</span> "${p.texto}" → <span class="prop-verb">Verbo: ${p.verbo || 'N/A'}</span></div>`
+                    ).join('') : '';
+
+                card.innerHTML = `
+                    <h2>Oracion ${idx + 1}: "${r.oracion}"</h2>
+
+                    <div class="info-grid">
+                        <div class="info-item"><div class="label">Tipo de Oracion</div><div class="value">${r.tipo_oracion}</div></div>
+                        <div class="info-item"><div class="label">Proposiciones</div><div class="value">${r.num_proposiciones}</div></div>
+                        <div class="info-item"><div class="label">spaCy Tiempo</div><div class="value">${r.spacy.tiempo} ms</div></div>
+                        <div class="info-item"><div class="label">Stanza Tiempo</div><div class="value">${r.stanza.tiempo} ms</div></div>
+                        <div class="info-item"><div class="label">spaCy Memoria</div><div class="value">${r.spacy.memoria} MB</div></div>
+                        <div class="info-item"><div class="label">Stanza Memoria</div><div class="value">${r.stanza.memoria} MB</div></div>
+                    </div>
+
+                    ${r.conectores.length > 0 ? `
+                        <div class="section-title">Conectores Detectados (Actividad 4)</div>
+                        <div>${r.conectores.map(c => `<span class="conector-badge ${c.categoria === 'Coordinada' ? 'badge-coord' : 'badge-subord'}">"${c.conector}" - ${c.tipo} (${c.categoria})</span>`).join(' ')}</div>
+                    ` : '<p style="color:#666; margin-top:10px;">Oracion Simple - Sin conectores</p>'}
+
+                    ${propsHtml ? `<div class="section-title">Verbos por Proposicion (Actividad 4)</div><div>${propsHtml}</div>` : ''}
+
+                    <div class="tabs" id="tabs-${idx}">
+                        <button class="tab active" onclick="showTab(${idx}, 'spacy')">spaCy</button>
+                        <button class="tab" onclick="showTab(${idx}, 'stanza')">Stanza (Stanford)</button>
+                        <button class="tab" onclick="showTab(${idx}, 'compare')">Comparacion APE16</button>
+                        <button class="tab" onclick="showTab(${idx}, 'arbol')">Arbol displaCy</button>
+                    </div>
+
+                    <div class="tab-content active" id="tab-spacy-${idx}">
+                        <h3>Analisis spaCy - Actividad 6 (Tabla Token|POS|Dependencia|Lema)</h3>
+                        ${makeTable(r.spacy.tokens)}
+                        <div style="margin-top:10px;">
+                            <strong>Sujetos:</strong> ${r.spacy.sujetos.join(', ') || 'N/A'} |
+                            <strong>Verbos:</strong> ${r.spacy.verbos.join(', ') || 'N/A'} |
+                            <strong>Objeto Directo:</strong> ${r.spacy.objetos.join(', ') || 'N/A'}
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-stanza-${idx}">
+                        <h3>Analisis Stanza (Stanford NLP) - Actividad 2 y 3</h3>
+                        ${makeTable(r.stanza.tokens)}
+                        <div style="margin-top:10px;">
+                            <strong>Sujetos:</strong> ${r.stanza.sujetos.join(', ') || 'N/A'} |
+                            <strong>Verbos:</strong> ${r.stanza.verbos.join(', ') || 'N/A'} |
+                            <strong>Objeto Directo:</strong> ${r.stanza.objetos.join(', ') || 'N/A'}
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="tab-compare-${idx}">
+                        <h3>Comparacion spaCy vs Stanza - Actividad 6 Practica 16</h3>
+                        ${makeCompTable(r)}
+                    </div>
+
+                    <div class="tab-content" id="tab-arbol-${idx}">
+                        <h3>Arbol Sintactico displaCy - Actividad 5 Practica 15</h3>
+                        <div class="arbol-container">${r.spacy.html_arbol}</div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function showTab(idx, tab) {
+            const parent = document.getElementById(`tabs-${idx}`).parentElement;
+            parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            parent.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tab}-${idx}`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
