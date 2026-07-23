@@ -1,2 +1,3 @@
 .pymcp
 .venv
+__pycache__

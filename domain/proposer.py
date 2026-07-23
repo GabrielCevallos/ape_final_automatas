@@ -12,7 +12,7 @@ def split_propositions(
             if t.pos in ("VERB", "AUX"):
                 verbo = t.text
                 break
-        return [Proposition(texto, verbo)]
+        return [Proposition(text, verbo)]
 
     partes = [text.strip()]
 
