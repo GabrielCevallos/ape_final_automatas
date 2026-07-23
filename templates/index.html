@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APE 15/16 - Analisis Lexico, Sintactico y Clasificacion Semantica</title>
+    <title>APE · análisis lingüístico</title>
+    <!-- Font & icon (feather) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+<<<<<<< HEAD
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #1a1a2e; color: #eee; min-height: 100vh; }
         .header { background: linear-gradient(135deg, #16213e, #0f3460); padding: 20px 30px; border-bottom: 3px solid #e94560; }
@@ -53,107 +56,828 @@
         .prop-box { background: #0f3460; border-radius: 6px; padding: 10px; margin: 5px 0; display: inline-block; }
         .prop-box .prop-num { color: #e94560; font-weight: bold; }
         .prop-box .prop-verb { color: #0f9b8e; font-weight: bold; }
+=======
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f6f8fc;
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 24px;
+            position: relative;
+        }
+
+        .app {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .app-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .app-header h1 {
+            font-weight: 600;
+            font-size: 1.7rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .app-header .sub {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: #eef2ff;
+            padding: 6px 14px;
+            border-radius: 40px;
+        }
+
+        .app-header .sub i {
+            margin-right: 6px;
+            color: #3b82f6;
+        }
+
+        /* cards */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 24px 28px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+            margin-bottom: 28px;
+            transition: box-shadow 0.2s;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .card:hover {
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-header i {
+            font-size: 1.4rem;
+            color: #2563eb;
+            background: #dbeafe;
+            padding: 8px;
+            border-radius: 14px;
+        }
+
+        .card-header h2 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0f172a;
+        }
+
+        .card-header .badge {
+            margin-left: auto;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 4px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+        }
+
+        /* textarea */
+        textarea {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 18px;
+            background: #fafcff;
+            color: #0f172a;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+            min-height: 130px;
+            font-family: inherit;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+
+        textarea::placeholder {
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        /* button group */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            background: #f1f5f9;
+            color: #1e293b;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            letter-spacing: 0.2px;
+        }
+
+        .btn i {
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #e2e8f0;
+        }
+
+        .btn-outline:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        .btn-success {
+            background: #0f973d;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #0b7e33;
+            transform: translateY(-2px);
+        }
+
+        .btn-purple {
+            background: #7c3aed;
+            color: white;
+        }
+
+        .btn-purple:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
+        }
+
+        .btn-soft {
+            background: #eef2ff;
+            color: #2563eb;
+        }
+
+        .btn-soft:hover {
+            background: #dbeafe;
+        }
+
+        .btn-spacy {
+            background: #0b9a6e;
+            color: white;
+        }
+
+        .btn-stanza {
+            background: #b45309;
+            color: white;
+        }
+
+        /* loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* resultados */
+        .result-card {
+            border-left: 4px solid #2563eb;
+            margin-top: 24px;
+        }
+
+        .result-card .oracion-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .result-card .oracion-title .badge-type {
+            background: #dbeafe;
+            color: #1e40af;
+            font-size: 0.7rem;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 16px 0 20px;
+        }
+
+        .info-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid #eef2f6;
+        }
+
+        .info-item .label {
+            color: #64748b;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .info-item .value {
+            color: #0f172a;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 4px;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            margin: 12px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .tag-pos {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tag-dep {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .tag-lem {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .conector-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 40px;
+            margin: 3px 6px 3px 0;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: #f1f5f9;
+        }
+
+        .badge-coord {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+
+        .badge-subord {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin: 20px 0 12px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 2px;
+        }
+
+        .tab {
+            padding: 8px 18px;
+            border-radius: 40px 40px 0 0;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: transparent;
+            color: #64748b;
+            border: none;
+            transition: all 0.15s;
+        }
+
+        .tab.active {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+        }
+
+        .tab:hover:not(.active) {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fade 0.2s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 12px 0 8px;
+        }
+
+        th,
+        td {
+            padding: 10px 10px;
+            text-align: left;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #334155;
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        tr:hover td {
+            background: #fafcff;
+        }
+
+        .arbol-container {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 18px;
+            overflow-x: auto;
+            border: 1px solid #eef2f6;
+            margin-top: 8px;
+        }
+
+        .prop-box {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 10px 16px;
+            margin: 6px 0;
+            display: inline-block;
+            border: 1px solid #eef2f6;
+        }
+
+        .prop-box .prop-num {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .prop-box .prop-verb {
+            color: #0b9a6e;
+            font-weight: 500;
+        }
+
+        .cmp-table th {
+            background: #ede9fe;
+            color: #4c1d95;
+        }
+
+        .cmp-table td:nth-child(2),
+        .cmp-table td:nth-child(3) {
+            text-align: center;
+        }
+
+        /* ===== NOTIFICACIONES / TOASTS ===== */
+        .toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 420px;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .toast {
+            pointer-events: auto;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            animation: slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s ease;
+        }
+
+        .toast.hiding {
+            animation: slideOutRight 0.3s ease forwards;
+        }
+
+        .toast-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .toast-icon.warning {
+            background: #f59e0b;
+        }
+
+        .toast-icon.error {
+            background: #ef4444;
+        }
+
+        .toast-icon.success {
+            background: #0f973d;
+        }
+
+        .toast-icon.info {
+            background: #3b82f6;
+        }
+
+        .toast-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .toast-message {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .toast-close {
+            flex-shrink: 0;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            font-size: 1rem;
+            margin-top: -2px;
+        }
+
+        .toast-close:hover {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+        }
+
+        /* responsive */
+        @media (max-width: 640px) {
+            .app-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .btn-group .btn {
+                flex: 1 1 auto;
+                justify-content: center;
+            }
+            .card {
+                padding: 18px;
+            }
+            .toast-container {
+                top: 12px;
+                right: 12px;
+                left: 12px;
+                max-width: none;
+            }
+            .toast {
+                padding: 14px 16px;
+            }
+        }
+>>>>>>> 6a61197 (Mejora de interfaz visual, se complemento codigo en app.py y space.py para manejo de errores)
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>APE 15/16 - Analisis Lexico, Sintactico y Clasificacion Semantica</h1>
-        <p>spaCy + Stanza (Stanford NLP) | Teoria de Autometas y Computabilidad Avanzada</p>
-        <p style="color: #666; font-size: 0.8em;">Docente: Jose O. Guaman Q. | 6to Ciclo - Unidad Tres</p>
-    </div>
+    <div class="app">
+        <!-- header -->
+        <header class="app-header">
+            <h1><i class="fas fa-code" style="background: none; color: #2563eb; margin-right: 8px;"></i> APE · análisis lingüístico</h1>
+            <span class="sub"><i class="fas fa-robot"></i> spaCy + Stanza (Stanford NLP) · 6to Ciclo</span>
+        </header>
 
-    <div class="container">
+        <!-- input card -->
         <div class="card">
-            <h2>Enviar Oraciones desde Front-End</h2>
-            <p style="color:#aaa; margin-bottom:10px; font-size:0.9em;">Ingrese oraciones separadas por salto de linea:</p>
+            <div class="card-header">
+                <i class="fas fa-pen-fancy"></i>
+                <h2>Oraciones</h2>
+                <span class="badge">separadas por línea</span>
+            </div>
             <textarea id="oraciones-input" placeholder="María estudia todos los días.&#10;Pedro compró un automóvil.&#10;María estudia porque mañana tiene un examen."></textarea>
-            <div style="margin-top: 10px;">
-                <button class="btn btn-load" onclick="cargarEjemplos()">Cargar Ejemplos Practica 15</button>
-                <button class="btn btn-load" onclick="cargarEjemplos16()">Cargar Ejemplos Practica 16</button>
-                <button class="btn btn-primary" onclick="analizarOraciones()">Analizar con Ambas Herramientas</button>
+            <div class="btn-group">
+                <button class="btn btn-soft" onclick="cargarEjemplos()"><i class="fas fa-file-import"></i> Ejemplos 15</button>
+                <button class="btn btn-soft" onclick="cargarEjemplos16()"><i class="fas fa-file-import"></i> Ejemplos 16</button>
+                <button class="btn btn-spacy" onclick="analizarOraciones('spacy')"><i class="fas fa-microchip"></i> spaCy</button>
+                <button class="btn btn-stanza" onclick="analizarOraciones('stanza')"><i class="fas fa-database"></i> Stanza</button>
+                <button class="btn btn-primary" onclick="analizarOraciones('both')"><i class="fas fa-arrows-left-right"></i> Ambas</button>
             </div>
         </div>
 
+        <!-- loading -->
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p style="margin-top:10px; color:#aaa;">Analizando con spaCy y Stanza...</p>
+            <p style="color: #475569; font-weight: 400;">Procesando con <strong>spaCy</strong> y <strong>Stanza</strong> …</p>
         </div>
 
+        <!-- results container -->
         <div id="resultados-container"></div>
     </div>
 
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <script>
+        // ============================================================
+        //  SISTEMA DE NOTIFICACIONES (TOAST)
+        // ============================================================
+        const Toast = {
+            container: document.getElementById('toastContainer'),
+
+            show({ title, message, type = 'info', duration = 4000 }) {
+                const icons = {
+                    warning: 'fa-exclamation-triangle',
+                    error: 'fa-times-circle',
+                    success: 'fa-check-circle',
+                    info: 'fa-info-circle'
+                };
+
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.innerHTML = `
+                    <div class="toast-icon ${type}">
+                        <i class="fas ${icons[type] || icons.info}"></i>
+                    </div>
+                    <div class="toast-content">
+                        <div class="toast-title">${title}</div>
+                        <div class="toast-message">${message}</div>
+                    </div>
+                    <button class="toast-close" onclick="this.closest('.toast').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                this.container.appendChild(toast);
+
+                // Auto dismiss
+                if (duration > 0) {
+                    setTimeout(() => {
+                        toast.classList.add('hiding');
+                        setTimeout(() => toast.remove(), 300);
+                    }, duration);
+                }
+
+                // Click to dismiss
+                toast.addEventListener('click', (e) => {
+                    if (e.target.closest('.toast-close')) return;
+                    toast.classList.add('hiding');
+                    setTimeout(() => toast.remove(), 300);
+                });
+
+                return toast;
+            },
+
+            warning(title, message, duration = 4000) {
+                return this.show({ title, message, type: 'warning', duration });
+            },
+
+            error(title, message, duration = 5000) {
+                return this.show({ title, message, type: 'error', duration });
+            },
+
+            success(title, message, duration = 3000) {
+                return this.show({ title, message, type: 'success', duration });
+            },
+
+            info(title, message, duration = 4000) {
+                return this.show({ title, message, type: 'info', duration });
+            }
+        };
+
+        // ============================================================
+        //  FUNCIONES DE CARGA
+        // ============================================================
         function cargarEjemplos() {
-            document.getElementById('oraciones-input').value = [
-                "María estudia todos los días.",
-                "Pedro compró un automóvil.",
-                "Ana cocina la cena.",
-                "Luis juega fútbol.",
-                "María estudia porque mañana tiene un examen.",
-                "Pedro llegó y Ana salió.",
-                "Juan cocina mientras Ana limpia."
-            ].join('\n');
+            document.getElementById('oraciones-input').value =
+                "María estudia todos los días.\nPedro compró un automóvil.\nAna cocina la cena.\nLuis juega fútbol.\nMaría estudia porque mañana tiene un examen.\nPedro llegó y Ana salió.\nJuan cocina mientras Ana limpia.";
+            Toast.success('Ejemplos cargados', 'Se cargaron los ejemplos de la práctica 15');
         }
 
         function cargarEjemplos16() {
-            document.getElementById('oraciones-input').value = [
-                "María estudia porque mañana tiene un examen.",
-                "Pedro llegó y Ana salió.",
-                "Aunque llueve iremos al parque.",
-                "Si estudias aprobarás.",
-                "Juan cocina mientras Ana limpia.",
-                "Pedro compró un automóvil.",
-                "Ana cocina la cena.",
-                "Luis juega fútbol."
-            ].join('\n');
+            document.getElementById('oraciones-input').value =
+                "María estudia porque mañana tiene un examen.\nPedro llegó y Ana salió.\nAunque llueve iremos al parque.\nSi estudias aprobarás.\nJuan cocina mientras Ana limpia.\nPedro compró un automóvil.\nAna cocina la cena.\nLuis juega fútbol.";
+            Toast.success('Ejemplos cargados', 'Se cargaron los ejemplos de la práctica 16');
         }
 
-        async function analizarOraciones() {
+        // ============================================================
+        //  ANÁLISIS PRINCIPAL
+        // ============================================================
+        async function analizarOraciones(modo) {
             const input = document.getElementById('oraciones-input').value.trim();
-            if (!input) { alert('Ingrese al menos una oracion.'); return; }
+            if (!input) {
+                Toast.warning('Campo vacío', 'Ingresa al menos una oración para analizar.');
+                return;
+            }
+
             const oraciones = input.split('\n').filter(o => o.trim());
+
+            // Mostrar loading
             document.getElementById('loading').classList.add('show');
             document.getElementById('resultados-container').innerHTML = '';
+
             try {
                 const resp = await fetch('/analizar', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ oraciones })
+                    body: JSON.stringify({ oraciones, modo })
                 });
+
+                // Si la respuesta no es JSON, probablemente hay error HTML
+                const contentType = resp.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    const text = await resp.text();
+                    console.error('Respuesta no JSON:', text.substring(0, 200));
+                    throw new Error('El servidor devolvió una respuesta inválida. Verifica que el modelo spaCy esté instalado.');
+                }
+
                 const data = await resp.json();
                 document.getElementById('loading').classList.remove('show');
-                if (data.resultados) mostrarResultados(data.resultados);
+
+                if (data.error) {
+                    Toast.error('Error del servidor', data.error);
+                    return;
+                }
+
+                if (data.resultados) {
+                    Toast.success('Análisis completado', `Se procesaron ${data.resultados.length} oraciones`);
+                    mostrarResultados(data.resultados);
+                } else {
+                    Toast.warning('Sin resultados', 'No se obtuvieron datos del análisis');
+                }
+
             } catch (err) {
                 document.getElementById('loading').classList.remove('show');
-                alert('Error: ' + err.message);
+                console.error('Error:', err);
+                Toast.error('Error de conexión', err.message || 'No se pudo conectar con el servidor');
             }
         }
 
+        // ============================================================
+        //  RENDERIZADO DE RESULTADOS
+        // ============================================================
         function makeTable(tokens) {
+            if (!tokens || tokens.length === 0) {
+                return '<p style="color:#94a3b8; padding: 12px 0;">No hay tokens disponibles</p>';
+            }
             return `<table>
                 <thead><tr><th>Token</th><th>Lema</th><th>POS</th><th>Dependencia</th><th>Cabeza</th></tr></thead>
                 <tbody>${tokens.map(t => `<tr>
-                    <td><strong>${t.text}</strong></td>
-                    <td><span class="tag tag-lem">${t.lemma}</span></td>
-                    <td><span class="tag tag-pos">${t.pos}</span></td>
-                    <td><span class="tag tag-dep">${t.dep}</span></td>
-                    <td>${t.head}</td>
+                    <td><strong>${t.text || '—'}</strong></td>
+                    <td><span class="tag tag-lem">${t.lemma || '—'}</span></td>
+                    <td><span class="tag tag-pos">${t.pos || '—'}</span></td>
+                    <td><span class="tag tag-dep">${t.dep || '—'}</span></td>
+                    <td>${t.head || '—'}</td>
                 </tr>`).join('')}</tbody></table>`;
         }
 
         function makeCompTable(r) {
-            const sp = r.spacy;
-            const st = r.stanza;
-            const cmp = r.comparacion;
+            const sp = r.spacy || { tiempo: 0, memoria: 0 };
+            const st = r.stanza || { tiempo: 0, memoria: 0 };
+            const cmp = r.comparacion || { precision_pos: 0, precision_dep: 0 };
             return `<table class="cmp-table">
-                <thead><tr><th>Aspecto</th><th>spaCy</th><th>Stanza (Stanford NLP)</th></tr></thead>
+                <thead><tr><th>Aspecto</th><th>spaCy</th><th>Stanza (Stanford)</th></tr></thead>
                 <tbody>
-                    <tr><td>Tiempo de ejecucion</td><td>${sp.tiempo} ms</td><td>${st.tiempo} ms</td></tr>
-                    <tr><td>Precision POS</td><td colspan="2" style="text-align:center">${cmp.precision_pos}% coincidencia entre herramientas</td></tr>
-                    <tr><td>Arbol sintactico</td><td>Arbol de dependencias (displaCy)</td><td>Arbol de dependencias + Constituyente</td></tr>
-                    <tr><td>Dependencias</td><td colspan="2" style="text-align:center">${cmp.precision_dep}% coincidencia de etiquetas</td></tr>
-                    <tr><td>Facilidad de uso</td><td>Muy facil (1 linea de codigo)</td><td>Facil (requiere mas configuracion)</td></tr>
-                    <tr><td>Consumo de memoria</td><td>${sp.memoria} MB</td><td>${st.memoria} MB</td></tr>
+                    <tr><td>Tiempo ejecución</td><td>${sp.tiempo || '—'} ms</td><td>${st.tiempo || '—'} ms</td></tr>
+                    <tr><td>Precisión POS</td><td colspan="2" style="text-align:center">${cmp.precision_pos || '—'}%</td></tr>
+                    <tr><td>Dependencias</td><td colspan="2" style="text-align:center">${cmp.precision_dep || '—'}%</td></tr>
+                    <tr><td>Memoria</td><td>${sp.memoria || '—'} MB</td><td>${st.memoria || '—'} MB</td></tr>
                 </tbody></table>`;
         }
 
@@ -257,60 +981,109 @@
 
             resultados.forEach((r, idx) => {
                 const card = document.createElement('div');
-                card.className = 'card';
+                card.className = 'card result-card';
 
-                const propsHtml = r.tipo_oracion !== 'Simple' && r.stanza.proposiciones ?
+                // Si hay error en esta oración, mostrar mensaje
+                if (r.error) {
+                    card.innerHTML = `
+                        <div class="oracion-title">
+                            <span>${idx+1}. "${r.oracion || '—'}"</span>
+                            <span class="badge-type" style="background:#fecaca; color:#991b1b;">Error</span>
+                        </div>
+                        <div style="color:#dc2626; background:#fef2f2; padding:12px 16px; border-radius:12px; margin:8px 0;">
+                            <i class="fas fa-exclamation-circle"></i> ${r.error}
+                        </div>
+                    `;
+                    container.appendChild(card);
+                    return;
+                }
+
+                const propsHtml = r.stanza?.proposiciones ?
                     r.stanza.proposiciones.map((p, i) =>
                         `<div class="prop-box"><span class="prop-num">Prop ${i+1}:</span> "${p.texto}" → <span class="prop-verb">Verbo: ${p.verbo || 'N/A'}</span></div>`
                     ).join('') : '';
 
-                card.innerHTML = `
-                    <h2>Oracion ${idx + 1}: "${r.oracion}"</h2>
+                const conectoresHtml = r.conectores?.length ?
+                    r.conectores.map(c =>
+                        `<span class="conector-badge ${c.categoria === 'Coordinada' ? 'badge-coord' : 'badge-subord'}">"${c.conector}" · ${c.tipo}</span>`
+                    ).join(' ') :
+                    '<span style="color:#64748b;">Oración simple · sin conectores</span>';
 
-                    <div class="info-grid">
-                        <div class="info-item"><div class="label">Tipo de Oracion</div><div class="value">${r.tipo_oracion}</div></div>
-                        <div class="info-item"><div class="label">Proposiciones</div><div class="value">${r.num_proposiciones}</div></div>
-                        <div class="info-item"><div class="label">spaCy Tiempo</div><div class="value">${r.spacy.tiempo} ms</div></div>
-                        <div class="info-item"><div class="label">Stanza Tiempo</div><div class="value">${r.stanza.tiempo} ms</div></div>
-                        <div class="info-item"><div class="label">spaCy Memoria</div><div class="value">${r.spacy.memoria} MB</div></div>
-                        <div class="info-item"><div class="label">Stanza Memoria</div><div class="value">${r.stanza.memoria} MB</div></div>
+                card.innerHTML = `
+                    <div class="oracion-title">
+                        <span>${idx+1}. "${r.oracion}"</span>
+                        <span class="badge-type">${r.tipo_oracion || '—'}</span>
                     </div>
 
+<<<<<<< HEAD
                     ${r.conectores.length > 0 ? `
                         <div class="section-title">Conectores Detectados</div>
                         <div>${r.conectores.map(c => `<span class="conector-badge ${c.categoria === 'Coordinada' ? 'badge-coord' : 'badge-subord'}">"${c.conector}" - ${c.tipo} (${c.categoria})</span>`).join(' ')}</div>
                     ` : '<p style="color:#666; margin-top:10px;">Oracion Simple - Sin conectores</p>'}
 
                     ${propsHtml ? `<div class="section-title">Verbos por Proposicion</div><div>${propsHtml}</div>` : ''}
+=======
+                    <div class="info-grid">
+                        <div class="info-item"><div class="label">Proposiciones</div><div class="value">${r.num_proposiciones || 0}</div></div>
+                        <div class="info-item"><div class="label">spaCy</div><div class="value">${r.spacy?.tiempo || '—'} ms</div></div>
+                        <div class="info-item"><div class="label">Stanza</div><div class="value">${r.stanza?.tiempo || '—'} ms</div></div>
+                        <div class="info-item"><div class="label">spaCy mem.</div><div class="value">${r.spacy?.memoria || '—'} MB</div></div>
+                        <div class="info-item"><div class="label">Stanza mem.</div><div class="value">${r.stanza?.memoria || '—'} MB</div></div>
+                    </div>
+
+                    <div style="margin: 12px 0 4px;"><strong>Conectores</strong></div>
+                    <div class="tag-group">${conectoresHtml}</div>
+
+                    ${propsHtml ? `<div style="margin: 16px 0 6px;"><strong>Verbos por proposición</strong></div><div>${propsHtml}</div>` : ''}
+>>>>>>> 6a61197 (Mejora de interfaz visual, se complemento codigo en app.py y space.py para manejo de errores)
 
                     <div class="tabs" id="tabs-${idx}">
                         <button class="tab active" onclick="showTab(${idx}, 'spacy')">spaCy</button>
-                        <button class="tab" onclick="showTab(${idx}, 'stanza')">Stanza (Stanford)</button>
-                        <button class="tab" onclick="showTab(${idx}, 'compare')">Comparacion APE16</button>
-                        <button class="tab" onclick="showTab(${idx}, 'arbol')">Arbol displaCy</button>
+                        <button class="tab" onclick="showTab(${idx}, 'stanza')">Stanza</button>
+                        <button class="tab" onclick="showTab(${idx}, 'compare')">Comparación</button>
+                        <button class="tab" onclick="showTab(${idx}, 'arbol')">Árbol</button>
                     </div>
 
                     <div class="tab-content active" id="tab-spacy-${idx}">
+<<<<<<< HEAD
                         <h3>Analisis spaCy</h3>
                         ${makeTable(r.spacy.tokens)}
                         <div style="margin-top:10px;">
                             <strong>Sujetos:</strong> ${r.spacy.sujetos.join(', ') || 'N/A'} |
                             <strong>Verbos:</strong> ${r.spacy.verbos.join(', ') || 'N/A'} |
                             <strong>Objeto Directo:</strong> ${r.spacy.objetos.join(', ') || 'N/A'}
+=======
+                        <h4 style="margin: 6px 0 4px; font-weight: 500;">Análisis spaCy · tokens, POS, dependencias</h4>
+                        ${r.spacy ? makeTable(r.spacy.tokens) : '<p style="color:#94a3b8;">No disponible</p>'}
+                        <div class="tag-group">
+                            <span><strong>Sujetos:</strong> ${r.spacy?.sujetos?.join(', ') || '—'}</span>
+                            <span><strong>Verbos:</strong> ${r.spacy?.verbos?.join(', ') || '—'}</span>
+                            <span><strong>Objeto directo:</strong> ${r.spacy?.objetos?.join(', ') || '—'}</span>
+>>>>>>> 6a61197 (Mejora de interfaz visual, se complemento codigo en app.py y space.py para manejo de errores)
                         </div>
                     </div>
 
                     <div class="tab-content" id="tab-stanza-${idx}">
+<<<<<<< HEAD
                         <h3>Analisis Stanza (Stanford NLP)</h3>
                         ${makeTable(r.stanza.tokens)}
                         <div style="margin-top:10px;">
                             <strong>Sujetos:</strong> ${r.stanza.sujetos.join(', ') || 'N/A'} |
                             <strong>Verbos:</strong> ${r.stanza.verbos.join(', ') || 'N/A'} |
                             <strong>Objeto Directo:</strong> ${r.stanza.objetos.join(', ') || 'N/A'}
+=======
+                        <h4 style="margin: 6px 0 4px; font-weight: 500;">Análisis Stanza (Stanford NLP)</h4>
+                        ${r.stanza ? makeTable(r.stanza.tokens) : '<p style="color:#94a3b8;">No disponible</p>'}
+                        <div class="tag-group">
+                            <span><strong>Sujetos:</strong> ${r.stanza?.sujetos?.join(', ') || '—'}</span>
+                            <span><strong>Verbos:</strong> ${r.stanza?.verbos?.join(', ') || '—'}</span>
+                            <span><strong>Objeto directo:</strong> ${r.stanza?.objetos?.join(', ') || '—'}</span>
+>>>>>>> 6a61197 (Mejora de interfaz visual, se complemento codigo en app.py y space.py para manejo de errores)
                         </div>
                     </div>
 
                     <div class="tab-content" id="tab-compare-${idx}">
+<<<<<<< HEAD
                         <h3>Comparacion spaCy vs Stanza </h3>
                         ${makeCompTable(r)}
                     </div>
@@ -318,6 +1091,15 @@
                     <div class="tab-content" id="tab-arbol-${idx}">
                         <h3>Arbol Sintactico</h3>
                         <div class="arbol-container">${buildArbol(r.spacy.tokens)}</div>
+=======
+                        <h4 style="margin: 6px 0 4px; font-weight: 500;">Comparativa spaCy vs Stanza</h4>
+                        ${r.comparacion ? makeCompTable(r) : '<p style="color:#94a3b8;">Datos de comparación no disponibles</p>'}
+                    </div>
+
+                    <div class="tab-content" id="tab-arbol-${idx}">
+                        <h4 style="margin: 6px 0 4px; font-weight: 500;">Árbol sintáctico (displaCy)</h4>
+                        <div class="arbol-container">${r.spacy?.html_arbol || '<span style="color:#94a3b8;">Árbol no generado</span>'}</div>
+>>>>>>> 6a61197 (Mejora de interfaz visual, se complemento codigo en app.py y space.py para manejo de errores)
                     </div>
                 `;
                 container.appendChild(card);
@@ -328,9 +1110,32 @@
             const parent = document.getElementById(`tabs-${idx}`).parentElement;
             parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             parent.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
+            const btns = parent.querySelectorAll('.tab');
+            btns.forEach(b => {
+                if (b.textContent.toLowerCase().includes(tab)) b.classList.add('active');
+            });
             document.getElementById(`tab-${tab}-${idx}`).classList.add('active');
         }
+
+        // Event delegation for tabs
+        document.addEventListener('click', function(e) {
+            const tabBtn = e.target.closest('.tab');
+            if (tabBtn) {
+                const parent = tabBtn.closest('.tabs');
+                if (!parent) return;
+                const idx = parent.id.replace('tabs-', '');
+                const tabMap = {
+                    'spacy': 'spacy',
+                    'stanza': 'stanza',
+                    'comparación': 'compare',
+                    'árbol': 'arbol'
+                };
+                const txt = tabBtn.textContent.trim().toLowerCase();
+                const tabKey = tabMap[txt] || txt;
+                showTab(parseInt(idx), tabKey);
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
